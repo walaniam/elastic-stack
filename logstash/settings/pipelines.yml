@@ -14,6 +14,10 @@
 #   queue.type: persisted
 #   path.config: "/tmp/logstash/*.config"
 #
+- pipeline.id: csv-parsing
+  path.config: "/usr/share/logstash/pipeline/csv.config"
+  pipeline.workers: 1
+
 # Available options:
 #
 #   # name of the pipeline

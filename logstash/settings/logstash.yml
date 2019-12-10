@@ -83,7 +83,7 @@
 # Show fully compiled configuration as debug log message
 # NOTE: --log.level must be 'debug'
 #
-# config.debug: false
+config.debug: true
 #
 # When enabled, process escaped characters such as \n and \" in strings in the
 # pipeline configuration files.
