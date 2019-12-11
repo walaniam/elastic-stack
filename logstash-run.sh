@@ -20,5 +20,6 @@ docker run --rm -it --network=$NETWORK --name logstash \
 	--link $elastic_container_id:elasticsearch \
 	-v $basedir/logstash/settings/:/usr/share/logstash/config/ \
 	-v $basedir/logstash/pipeline/:/usr/share/logstash/pipeline/ \
+	-v /home/mariusz/IdeaProjects/walaniam/data/:/usr/share/walaniam/stock/data/ \
 	$LOGSTASH_IMAGE
 
