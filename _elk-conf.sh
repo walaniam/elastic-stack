@@ -6,4 +6,3 @@ KIBANA_IMAGE=docker.elastic.co/kibana/kibana:$ELASTIC_VERSION
 LOGSTASH_IMAGE=docker.elastic.co/logstash/logstash:$ELASTIC_VERSION
 NETWORK=elastic
 
-docker network create --driver bridge $NETWORK || true
