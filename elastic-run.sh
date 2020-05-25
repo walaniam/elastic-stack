@@ -10,4 +10,10 @@ if [[ "$(docker network ls |grep $NETWORK 2> /dev/null)" == "" ]]; then
   docker network create --driver bridge $NETWORK || true
 fi
 
-docker run --rm -d -p 9200:9200 -p 9300:9300 --network=$NETWORK --name elasticsearch -e "discovery.type=single-node" $ELASTIC_IMAGE
+docker run --rm -d -p 9200:9200 -p 9300:9300 \
+  --network=$NETWORK \
+  --name elasticsearch \
+  -e "discovery.type=single-node" \
+  -v /home/mariusz/IdeaProjects/walaniam/data/elastic/data/:/usr/share/elasticsearch/data/ \
+  -v /home/mariusz/IdeaProjects/walaniam/data/elastic/logs/:/usr/share/elasticsearch/logs/ \
+  $ELASTIC_IMAGE
