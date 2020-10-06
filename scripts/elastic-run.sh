@@ -14,6 +14,6 @@ docker run --rm -d -p 9200:9200 -p 9300:9300 \
   --network=$NETWORK \
   --name elasticsearch \
   -e "discovery.type=single-node" \
-  -v $DATA_BASE_DIR/elastic/data/:/usr/share/elasticsearch/data/ \
-  -v $DATA_BASE_DIR/elastic/logs/:/usr/share/elasticsearch/logs/ \
+  -v ~/dev-data/elastic/data/:/usr/share/elasticsearch/data/ \
+  -v ~/dev-data/elastic/logs/:/usr/share/elasticsearch/logs/ \
   $ELASTIC_IMAGE

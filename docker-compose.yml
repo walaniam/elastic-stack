@@ -1,0 +1,45 @@
+version: '3.7'
+
+services:
+  # Elasticsearch Docker Images: https://www.docker.elastic.co/
+  elasticsearch:
+    image: ${ELASTIC_IMAGE}
+    container_name: elasticsearch
+    environment:
+      - node.name=elasticsearch
+      - xpack.security.enabled=false
+      - discovery.type=single-node
+      - "ES_JAVA_OPTS=-Xms512m -Xmx756m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+      nofile:
+        soft: 65536
+        hard: 65536
+    cap_add:
+      - IPC_LOCK
+    volumes:
+      - ~/dev-data/elastic/data:/usr/share/elasticsearch/data
+      - ~/dev-data/elastic/logs:/usr/share/elasticsearch/logs
+    ports:
+      - 9200:9200
+      - 9300:9300
+    networks:
+      - elastic
+
+  kibana:
+    container_name: kibana
+    image: ${KIBANA_IMAGE}
+    environment:
+      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+    ports:
+      - 5601:5601
+    networks:
+      - elastic
+    depends_on:
+      - elasticsearch
+
+networks:
+  elastic:
+    driver: bridge
